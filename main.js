@@ -46,5 +46,10 @@ const words = [
   // initalize Game
 
   function init() {
-      console.log
+      console.log('hey')
+      // load word from array
+      showWord(words);
   }
+
+  //Pick random to display on page
+  
