@@ -1,5 +1,5 @@
 .header {
-    animation: fadein 7s;
+    animation: fadein 5s;
     text-align: center;
     font-family: 'Oswald', sans-serif !important;
     font-size: 750%;
@@ -10,5 +10,5 @@
 }
 @keyframes fadein {
   from { opacity: 0}
-  to   { opacity: 3}
+  to   { opacity: 6}
 }
