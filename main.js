@@ -51,5 +51,11 @@ const words = [
       showWord(words);
   }
 
-  //Pick random to display on page
-  
+    //Pick random to display on page
+    //takes in the array 'words'
+    //The Math.floor() function returns the largest integer less than or equal to a given number.
+    //Math.random() used with Math.floor() can be used to return random integers.
+    function showWord (words) {
+        const randIndex = Math.floor(Math.random) * words.length);
+
+    }
