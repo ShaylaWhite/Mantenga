@@ -49,18 +49,31 @@ const words = [
       console.log('hey')
       // load word from array
       showWord(words);
+      // Call countdown every second
+      setInterval(() => {
+          
+      }, interval);
   }
 
-    //Pick random to display on page
-    //takes in the array 'words'
-    
+  //Pick random to display on page & takes in the array 'words'
     function showWord (words) {
-
         //The Math.floor() function returns the largest integer less than or equal to a given number.
         //Math.random() used with Math.floor() can be used to return random integers.
-        const randIndex = Math.floor(Math.random) * words.length);
+        const randIndex = Math.floor(Math.random() * words.length);
 
         //output random word here 'h2'
-         currentWord.innerHTML = words[randIndex]
-        
+         currentWord.innerHTML = words[randIndex];
+    }
+
+  // Countdown timer
+    function countdown() {
+        if(time > 0) {
+            //increase
+            time--;
+        } else if(time === 0) {
+            // game over
+            isPlaying = false;    
+        }
+        // Show time 
+        timeDisplay.innerHTML = time;
     }
