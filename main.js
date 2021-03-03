@@ -38,3 +38,9 @@ const words = [
     'Trabajar',
     'Pensar'
   ];
+
+  // initalize Game
+
+  function init() {
+      console.log
+  }
