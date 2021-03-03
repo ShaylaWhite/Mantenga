@@ -47,34 +47,44 @@ const words = [
 
   function init() {
       console.log('hey')
+
       // load word from array
       showWord(words);
-     // Call countdown every second
-     setInterval(countdown, 1000);  
-     //check status of 
 
-}
+     // Call countdown every second
+     setInterval(countdown, 1000); 
+
+    // Check game status
+    setInterval(checkStatus, 50);
+    }
     
-  //Pick random to display on page & takes in the array 'words'
+    // Pick random to display on page & takes in the array 'words'
     function showWord (words) {
-        //The Math.floor() function returns the largest integer less than or equal to a given number.
-        //Math.random() used with Math.floor() can be used to return random integers.
+        // The Math.floor() function returns the largest integer less than or equal to a given number.
+        // Math.random() used with Math.floor() can be used to return random integers.
         const randIndex = Math.floor(Math.random() * words.length);
 
-        //output random word here 'h2'
+        // output random word here 'h2'
          currentWord.innerHTML = words[randIndex];
     }
 
-  // Countdown timer
-function countdown() {
-    // Make sure time is not run out
-    if (time > 0) {
-      // Decrement
-      time--;
-    } else if (time === 0) {
-      // Game is over
-      isPlaying = false;
+        // Countdown timer
+    function countdown() {
+        // Make sure time is not run out
+        if (time > 0) {
+        // Decrement
+        time--;
+        } else if (time === 0) {
+        // Game is over
+        isPlaying = false;
+        }
+        // Show time
+        timeDisplay.innerHTML = time;
     }
-    // Show time
-    timeDisplay.innerHTML = time;
-  }
+    // Check game status
+    function checkStatus() {
+        if (!isPlaying && time === 0) {
+        message.innerHTML = 'Game Over!!!';
+        score = -1;
+        }
+    }
