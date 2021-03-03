@@ -1,3 +1,7 @@
+window.addEventListener('load', init);
+
+
+
 // Globals 
 let time = 10;
 let score = 0; 
