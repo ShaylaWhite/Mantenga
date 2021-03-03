@@ -49,12 +49,12 @@ const words = [
       console.log('hey')
       // load word from array
       showWord(words);
-      // Call countdown every second
-      setInterval(() => {
-          
-      }, interval);
-  }
+     // Call countdown every second
+     setInterval(countdown, 1000);  
+     //check status of 
 
+}
+    
   //Pick random to display on page & takes in the array 'words'
     function showWord (words) {
         //The Math.floor() function returns the largest integer less than or equal to a given number.
@@ -66,14 +66,15 @@ const words = [
     }
 
   // Countdown timer
-    function countdown() {
-        if(time > 0) {
-            //increase
-            time--;
-        } else if(time === 0) {
-            // game over
-            isPlaying = false;    
-        }
-        // Show time 
-        timeDisplay.innerHTML = time;
+function countdown() {
+    // Make sure time is not run out
+    if (time > 0) {
+      // Decrement
+      time--;
+    } else if (time === 0) {
+      // Game is over
+      isPlaying = false;
     }
+    // Show time
+    timeDisplay.innerHTML = time;
+  }
