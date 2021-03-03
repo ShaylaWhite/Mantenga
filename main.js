@@ -51,11 +51,26 @@ const words = [
       // load word from array
       showWord(words);
 
+     //match user input to random word
+     wordInput.addEventListener('input', startMatch);
+
      // Call countdown every second
      setInterval(countdown, 1000); 
 
-    // Check game status
-    setInterval(checkStatus, 50);
+     // Check game status
+     setInterval(checkStatus, 50);
+
+    }
+
+
+    // Start match
+    function startMatch() {
+        if (matchWords()) {
+        isPlaying = true;
+        time = currentLevel + 1;
+        showWord(words);
+        wordInput.value = '';
+        score++;
     }
     
     // Pick random to display on page & takes in the array 'words'
