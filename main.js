@@ -3,6 +3,15 @@ window.addEventListener('load', init);
 
 
 // Globals 
+
+// Levels 
+  
+const levels = {
+    bebe: 10,
+    medio: 7,
+    llorando: 3,
+}
+
 let time = 10;
 let score = 0; 
 let isPlaying;
@@ -68,10 +77,25 @@ const words = [
         if (matchWords()) {
         isPlaying = true;
         time = currentLevel + 1;
+        // empty the wordinput 
         showWord(words);
         wordInput.value = '';
         score++;
     }
+
+
+    // Match currentWord to wordInput
+    function matchWords() {
+        //select the things inside of the elements
+        if (wordInput.value === currentWord.innerHTML) {
+        message.innerHTML = 'Correct!!!';
+        return true;
+        } else {
+        message.innerHTML = '';
+        return false;
+        }
+    }
+
     
     // Pick random to display on page & takes in the array 'words'
     function showWord (words) {
