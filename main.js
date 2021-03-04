@@ -10,9 +10,11 @@ const levels = {
     bebe: 10,
     medio: 7,
     llorando: 3,
-}
+};
 
-let time = 10;
+const currentLevel = levels.medio;
+
+let time = currentlevels;
 let score = 0; 
 let isPlaying;
 
