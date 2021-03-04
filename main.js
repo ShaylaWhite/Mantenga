@@ -12,9 +12,9 @@ const levels = {
     llorando: 3,
 };
 
-const currentLevel = levels.medio;
+const currentLevel = levels.bebe
 
-let time = currentlevels;
+let time = currentLevel;
 let score = 0; 
 let isPlaying;
 
@@ -54,78 +54,88 @@ const words = [
     'Pensar'
   ];
 
-  // initalize Game
-
-  function init() {
-      console.log('hey')
-
-      // load word from array
-      showWord(words);
-
-     //match user input to random word
-     wordInput.addEventListener('input', startMatch);
-
-     // Call countdown every second
-     setInterval(countdown, 1000); 
-
-     // Check game status
-     setInterval(checkStatus, 50);
-
-    }
-
-
-    // Start match
-    function startMatch() {
-        if (matchWords()) {
-        isPlaying = true;
-        time = currentLevel + 1;
-        // empty the wordinput 
-        showWord(words);
-        wordInput.value = '';
-        score++;
-    }
-
-
-    // Match currentWord to wordInput
-    function matchWords() {
-        //select the things inside of the elements
-        if (wordInput.value === currentWord.innerHTML) {
-        message.innerHTML = 'Correct!!!';
-        return true;
-        } else {
-        message.innerHTML = '';
-        return false;
-        }
-    }
-
-    
-    // Pick random to display on page & takes in the array 'words'
-    function showWord (words) {
-        // The Math.floor() function returns the largest integer less than or equal to a given number.
-        // Math.random() used with Math.floor() can be used to return random integers.
-        const randIndex = Math.floor(Math.random() * words.length);
-
-        // output random word here 'h2'
-         currentWord.innerHTML = words[randIndex];
-    }
-
-        // Countdown timer
-    function countdown() {
-        // Make sure time is not run out
-        if (time > 0) {
-        // Decrement
-        time--;
-        } else if (time === 0) {
-        // Game is over
-        isPlaying = false;
-        }
-        // Show time
-        timeDisplay.innerHTML = time;
-    }
+ // Initialize Game
+function init() {
+    // Show number of seconds in UI
+    seconds.innerHTML = currentLevel;
+    // Load word from array
+    showWord(words);
+    // Start matching on word input
+    wordInput.addEventListener('input', startMatch);
+    // Call countdown every second
+    setInterval(countdown, 1000);
     // Check game status
-    function checkStatus() {
-        if (!isPlaying && time === 0) {
-        message.innerHTML = 'Game Over!!!';
-        score = -1;
-        }
+    setInterval(checkStatus, 50);
+  }
+
+
+// Start match
+function startMatch() {
+    if (matchWords()) {
+      isPlaying = true;
+      time = currentLevel + 1;
+      showWord(words);
+      wordInput.value = '';
+      score++;
     }
+    
+    // Highscore based on score value for Session Storage
+    if (typeof sessionStorage['highscore'] === 'undefined' || score > sessionStorage['highscore']) {
+      sessionStorage['highscore'] = score;
+    } else {
+      sessionStorage['highscore'] = sessionStorage['highscore'];
+    }
+  
+    // Prevent display of High Score: -1
+    if (sessionStorage['highscore'] >= 0) {
+    highscoreDisplay.innerHTML = sessionStorage['highscore'];
+    }
+  
+    // If score is -1, display 0
+    if (score === -1) {
+      scoreDisplay.innerHTML = 0;
+    } else {
+      scoreDisplay.innerHTML = score;
+    }
+  }
+  
+  // Match currentWord to wordInput
+  function matchWords() {
+    if (wordInput.value === currentWord.innerHTML) {
+      message.innerHTML = 'Correct!!!';
+      return true;
+    } else {
+      message.innerHTML = '';
+      return false;
+    }
+  }
+  
+  // Pick & show random word
+  function showWord(words) {
+    // Generate random array index
+    const randIndex = Math.floor(Math.random() * words.length);
+    // Output random word
+    currentWord.innerHTML = words[randIndex];
+  }
+  
+  // Countdown timer
+  function countdown() {
+    // Make sure time is not run out
+    if (time > 0) {
+      // Decrement
+      time--;
+    } else if (time === 0) {
+      // Game is over
+      isPlaying = false;
+    }
+    // Show time
+    timeDisplay.innerHTML = time;
+  }
+  
+  // Check game status
+  function checkStatus() {
+    if (!isPlaying && time === 0) {
+      message.innerHTML = 'Game Over!!!';
+      score = -1;
+    }
+  }
